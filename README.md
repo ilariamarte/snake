@@ -13,7 +13,7 @@ If you collide with the game area borders or with yourself you lose
 Fill the game area to win  
 
 ## Commands
-Use the arrow keys to move the snake around the game window  
+Use the Arrow keys to move the snake around the game window  
 Use the P key to pause the game  
 If you die (snake becomes blue and the game stops) you can respawn using the Space key  
 
