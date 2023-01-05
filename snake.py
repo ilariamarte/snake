@@ -8,7 +8,7 @@ tile_height = 20
 number_tile_x = 20
 number_tile_y = 10
 adjust_time = 5
-dead = False
+is_dead = False
 disable_death = False
 game_win = False
 
@@ -34,7 +34,7 @@ class Snake:
 		self.pos_last = np.zeros(2)
 		self.col = "green"
 		self.move = 'r' # starts going right
-		self.more_tail = 1
+		self.more_tail = 7
 s = Snake()
 
 def rnd():
@@ -73,30 +73,30 @@ def check_arrowkey_press():
 	if pressed[pygame.K_RIGHT]:
 		if s.move != 'l':	s.move = 'r'
 
-def move_snake(dead):
+def move_snake(is_dead):
 	[x,y] = [s.body[0,0],s.body[1,0]] # head
-	if dead == False or disable_death == True:
+	if is_dead == False or disable_death == True:
 		if s.move == 'u':
 			if y > 0:			y -= tile_height # stops at borders
-			else: dead = True
+			else: is_dead = True
 		elif s.move == 'd':
 			if y < max_height:	y += tile_height
-			else: dead = True
+			else: is_dead = True
 		elif s.move == 'l':
 			if x > 0:			x -= tile_width
-			else: dead = True
+			else: is_dead = True
 		elif s.move == 'r':
 			if x < max_width:	x += tile_width
-			else: dead = True
+			else: is_dead = True
 	[s.body[0,0],s.body[1,0]] = [x,y]
-	return dead
+	return is_dead
 
-def check_eat_self(dead):
+def check_eat_self(is_dead):
 	[x,y] = [s.body[0,0],s.body[1,0]] # head
 	for i in range(1, s.point_body):
 		if x == s.body[0,i] and y == s.body[1,i]:
-			dead = True
-	return dead
+			is_dead = True
+	return is_dead
 
 def check_eat_fruit():
 	[x,y] = [s.body[0,0],s.body[1,0]] # head
@@ -109,7 +109,7 @@ def check_eat_fruit():
 		s.pos_last[1] = s.body[1, s.point_body]
 
 def draw():
-	if dead == True and disable_death == False:
+	if is_dead == True and disable_death == False:
 		s.col = "blue"
 		# last piece of tail
 		pygame.draw.rect(Game.screen, s.col, pygame.Rect(s.pos_last[0], s.pos_last[1], tile_width, tile_height))
@@ -120,7 +120,7 @@ def draw():
 		pygame.draw.rect(Game.screen, s.col, pygame.Rect(s.body[0,i], s.body[1,i], tile_width, tile_height))
 
 def update_body():
-	if dead == False or disable_death == True:
+	if is_dead == False or disable_death == True:
 		s.pos_last[0] = s.body[0, s.point_body-1]
 		s.pos_last[1] = s.body[1, s.point_body-1]
 		for i in range(s.point_body-1, 0, -1): # start, stop, step
@@ -140,8 +140,8 @@ if __name__ == "__main__":
 			Game.screen.fill((0, 0, 0)) # refresh
 			check_arrowkey_press()
 			
-			dead = move_snake(dead) # updates dead
-			dead = check_eat_self(dead)
+			is_dead = move_snake(is_dead) # updates is_dead
+			is_dead = check_eat_self(is_dead)
 			check_eat_fruit()
 			draw() # snake + fruit
 			update_body()
@@ -149,7 +149,7 @@ if __name__ == "__main__":
 			pygame.display.flip()
 			Game.clock.tick(adjust_time)
 			if game_win == True:
-				dead = True
+				is_dead = True
 				print("You won!")
 				game_win = False
 		
@@ -163,9 +163,9 @@ if __name__ == "__main__":
 			mux = True
 		
 		# game reset
-		if dead == True and pygame.key.get_pressed()[pygame.K_SPACE]:
+		if is_dead == True and pygame.key.get_pressed()[pygame.K_SPACE]:
 			s = Snake() # snake reset
 			[f.x,f.y] = rnd()
-			dead = False
+			is_dead = False
 
 pygame.quit()
