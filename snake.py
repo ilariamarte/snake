@@ -1,7 +1,6 @@
 import pygame
 import numpy as np
 import random
-from dataclasses import dataclass
 
 # variables
 tile_width = 20
@@ -18,7 +17,6 @@ screen_height = number_tile_y * tile_height
 max_width = screen_width - tile_width
 max_height = screen_height - tile_height
 
-@dataclass
 class Game:
 	pygame.init()
 	pygame.display.set_caption("Snake")
@@ -36,7 +34,7 @@ class Snake:
 		self.pos_last = np.zeros(2)
 		self.col = "green"
 		self.move = 'r' # starts going right
-		self.more_tail = 10
+		self.more_tail = 1
 s = Snake()
 
 def rnd():
