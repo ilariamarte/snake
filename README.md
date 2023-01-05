@@ -17,4 +17,4 @@ Use the arrow keys to move the snake around the game window
 Use the P key to pause the game  
 If you die (snake becomes blue and the game stops) you can respawn using the Space key  
 
-![Alt text](https://github.com/ilariamarte/snake/images/snake1.PNG)
+![alt text](https://github.com/ilariamarte/snake/main/images/snake1.PNG)
