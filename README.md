@@ -1,9 +1,9 @@
 # snake
-Simple pixelated Snake-like game  
+Simple pixelated Snake-like game using the Pygame environment  
 
 One of my first Python programs, created to learn and practice the Python language  
 I recommend to anyone who'd like to learn a new coding language to start with an easy project like this one  
-You can use it to learn basic class usage and how to create a GUI within the pygame library workspace  
+You can use it to learn basic class usage and how to create a GUI within the Pygame library workspace  
 It may not have the best syntax, since I wasn't so acquainted with Python at the time, but it's a start  
 Enjoy!  
 
